@@ -3,6 +3,7 @@ package com.stackroute.Movie.controller;
 
 import com.stackroute.Movie.domain.Movie;
 import com.stackroute.Movie.exception.MovieAlreadyExistException;
+import com.stackroute.Movie.exception.MovieNotFoundException;
 import com.stackroute.Movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -95,7 +96,7 @@ public class MovieController {
 
     @GetMapping("movie")
 //    @ResponseBody
-    public ResponseEntity getMovie(@RequestParam("movieTitle") String title) {
+    public ResponseEntity getMovie(@RequestParam("movieTitle") String title) throws MovieNotFoundException {
         ResponseEntity responseEntity;
         List<Movie> m = null;
         try {

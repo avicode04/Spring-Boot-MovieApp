@@ -2,6 +2,7 @@ package com.stackroute.Movie.service;
 
 import com.stackroute.Movie.domain.Movie;
 import com.stackroute.Movie.exception.MovieAlreadyExistException;
+import com.stackroute.Movie.exception.MovieNotFoundException;
 import com.stackroute.Movie.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,9 +81,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> trackByName(String title) {
+    public List<Movie> trackByName(String title) throws MovieNotFoundException {
         List<Movie> m = null;
         m = movieRepo.trackByName(title);
+        if(m.isEmpty()){
+            throw new MovieNotFoundException("Movie not found..");
+        }
         return m;
     }
 }

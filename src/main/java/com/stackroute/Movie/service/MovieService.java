@@ -2,6 +2,7 @@ package com.stackroute.Movie.service;
 
 import com.stackroute.Movie.domain.Movie;
 import com.stackroute.Movie.exception.MovieAlreadyExistException;
+import com.stackroute.Movie.exception.MovieNotFoundException;
 
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface MovieService {
 
     public Movie deleteMovie(int movieId);
 
-    public List<Movie> trackByName(String title);
+    public List<Movie> trackByName(String title) throws MovieNotFoundException;
 
 }
