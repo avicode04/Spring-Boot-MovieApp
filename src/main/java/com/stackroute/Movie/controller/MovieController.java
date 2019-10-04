@@ -26,34 +26,23 @@ public class MovieController {
 
     }
 
+    @GetMapping("movie")
+    public ResponseEntity<?> getMovie(@RequestParam("movieTitle") String title) throws MovieNotFoundException {
+        ResponseEntity responseEntity;
+        List<Movie> m = null;
+        m = movieService.trackByName(title);
+        responseEntity = new ResponseEntity<List<Movie>>(m, HttpStatus.CREATED);
+        return responseEntity;
+    }
+
     @PostMapping("movie")
     public ResponseEntity saveMovie(@RequestBody Movie movie) throws MovieAlreadyExistException {
         ResponseEntity responseEntity;
         Movie m = null;
-        try {
-            m = movieService.saveMovie(movie);
-            responseEntity = new ResponseEntity<Movie>(m, HttpStatus.CREATED);
-        } catch (MovieAlreadyExistException ex) {
-
-            responseEntity = new ResponseEntity<Movie>(m, HttpStatus.CONFLICT);
-        }
-//        movieService.saveMovie(movie);
+        m = movieService.saveMovie(movie);
+        responseEntity = new ResponseEntity<Movie>(m, HttpStatus.CREATED);
         return responseEntity;
     }
-
-//    @PostMapping("movie")
-//    public ResponseEntity showMovie(){
-//        ResponseEntity responseEntity;
-//        try{
-//            movieService.showMovieList();
-//            responseEntity = new ResponseEntity<String>("Successfully created", HttpStatus.CREATED);
-//        }catch(Exception ex){
-//            responseEntity=new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
-//        }
-//        movieService.showMovieList();
-//        return responseEntity;
-//    }
-
     @PutMapping("movie")
     public ResponseEntity updateMovie(@RequestBody Movie movie) {
         ResponseEntity responseEntity;
@@ -64,7 +53,6 @@ public class MovieController {
         } catch (Exception ex) {
             responseEntity = new ResponseEntity<Movie>(m, HttpStatus.CONFLICT);
         }
-//        movieService.updateMovie(movie);
         return responseEntity;
     }
 
@@ -80,32 +68,4 @@ public class MovieController {
         }
         return responseEntity;
     }
-
-//    @GetMapping("movie")
-//    public ResponseEntity getMovie(){
-//        ResponseEntity responseEntity;
-//        List<Movie> movieList=null;
-//        try{
-//            movieList=movieService.showMovieList();
-//            responseEntity=new ResponseEntity<List<Movie>>(movieList,HttpStatus.CREATED);
-//        }catch (Exception ex){
-//            responseEntity=new ResponseEntity<List<Movie>>(movieList,HttpStatus.CONFLICT);
-//        }
-//        return responseEntity;
-//  }
-
-    @GetMapping("movie")
-//    @ResponseBody
-    public ResponseEntity getMovie(@RequestParam("movieTitle") String title) throws MovieNotFoundException {
-        ResponseEntity responseEntity;
-        List<Movie> m = null;
-        try {
-            m = movieService.trackByName(title);
-            responseEntity = new ResponseEntity<List<Movie>>(m, HttpStatus.CREATED);
-        } catch (Exception ex) {
-            responseEntity = new ResponseEntity<List<Movie>>(m, HttpStatus.CONFLICT);
-        }
-        return responseEntity;
-    }
-
 }

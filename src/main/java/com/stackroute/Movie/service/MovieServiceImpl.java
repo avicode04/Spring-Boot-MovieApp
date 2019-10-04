@@ -83,10 +83,11 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> trackByName(String title) throws MovieNotFoundException {
         List<Movie> m = null;
-        m = movieRepo.trackByName(title);
-        if(m.isEmpty()){
+        if(movieRepo.trackByName(title).isEmpty()){
             throw new MovieNotFoundException("Movie not found..");
+
         }
+        m = movieRepo.trackByName(title);
         return m;
     }
 }
