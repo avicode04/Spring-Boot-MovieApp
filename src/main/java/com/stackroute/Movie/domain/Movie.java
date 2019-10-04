@@ -8,6 +8,8 @@ import javax.persistence.Id;
 @Entity
 @Data
 public class Movie {
+
+    //Lombok used
     @Id
     int movieId;
     int voteCount;
