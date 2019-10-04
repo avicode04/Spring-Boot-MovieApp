@@ -28,6 +28,7 @@ public class AppConfig {
     }
 
 
+
 //    ServletRegistrationBean h2servlet(){
 //        ServletRegistrationBean registrationBean= new ServletRegistrationBean(new WebServlet());
 //        registrationBean.addUrlMappings("/console/*");
