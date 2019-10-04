@@ -13,6 +13,4 @@ public class EventHolderBean {
     public void setEventFired(Boolean eventFired) {
         this.eventFired = eventFired;
     }
-
-
 }

@@ -1,11 +1,7 @@
 package com.stackroute.Movie.config;
 
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.h2.server.web.WebServlet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -26,12 +22,4 @@ public class AppConfig {
                 .paths(regex("/api.*"))
                 .build();
     }
-
-
-
-//    ServletRegistrationBean h2servlet(){
-//        ServletRegistrationBean registrationBean= new ServletRegistrationBean(new WebServlet());
-//        registrationBean.addUrlMappings("/console/*");
-//        return registrationBean;
-//    }
 }
