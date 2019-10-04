@@ -2,6 +2,7 @@ package com.stackroute.Movie.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -22,4 +23,19 @@ public class AppConfig {
                 .paths(regex("/api.*"))
                 .build();
     }
+
+
+    @Bean
+    @Profile("dev")
+    public String devBean(){
+        return "I am available in profile dev";
+    }
+
+    @Bean
+    @Profile("prod")
+    public String prodBean(){
+        return "I am available in profile prod";
+    }
+
+
 }
